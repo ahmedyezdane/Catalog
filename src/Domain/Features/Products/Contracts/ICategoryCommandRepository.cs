@@ -2,11 +2,9 @@
 
 namespace Domain.Features.Products.Contracts;
 
-public interface ICategoryRepository
+public interface ICategoryCommandRepository
 {
     Task<Category> AddAsync(Category category, CancellationToken ct);
-
-    Task<List<Category>> LoadAllAsync(CancellationToken ct);
 
     Task<Category> LoadByIdAsync(int id, CancellationToken ct);
 

@@ -2,11 +2,9 @@
 
 namespace Domain.Features.Products.Contracts;
 
-public interface IBrandRepository
+public interface IBrandCommandRepository
 {
     Task<Brand> AddAsync(Brand brand, CancellationToken ct);
-
-    Task<List<Brand>> LoadAllAsync(int pageNo, int pageSize, string name, CancellationToken ct);
 
     Task<Brand> LoadByIdAsync(int id, CancellationToken ct);
 

@@ -1,5 +1,5 @@
-﻿using Domain.Features.Products.ValueObjects;
-using Domain.Products.Exceptions;
+﻿using Domain.Features.Products.Exceptions;
+using Domain.Features.Products.ValueObjects;
 using Domain.Shadred;
 
 namespace Domain.Features.Products.Entities;

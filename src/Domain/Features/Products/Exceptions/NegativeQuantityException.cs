@@ -1,4 +1,4 @@
-﻿namespace Domain.Products.Exceptions;
+﻿namespace Domain.Features.Products.Exceptions;
 
 public class NegativeQuantityException : Exception
 {

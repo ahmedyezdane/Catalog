@@ -1,6 +1,6 @@
 ﻿using Domain.Shadred;
 
-namespace Domain.Products.Entities;
+namespace Domain.Features.Products.Entities;
 
 public sealed class Category : BaseEntity
 {

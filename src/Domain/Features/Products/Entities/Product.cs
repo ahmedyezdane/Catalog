@@ -1,7 +1,8 @@
-﻿using Domain.Products.Exceptions;
+﻿using Domain.Features.Products.ValueObjects;
+using Domain.Products.Exceptions;
 using Domain.Shadred;
 
-namespace Domain.Products.Entities;
+namespace Domain.Features.Products.Entities;
 
 public sealed class Product : BaseEntity
 {
@@ -41,7 +42,7 @@ public sealed class Product : BaseEntity
 
     public void RemoveStock(int quantity)
     {
-        if ((AvailableStock - quantity) < 0)
+        if (AvailableStock - quantity < 0)
             throw new NegativeQuantityException();
 
         AvailableStock -= quantity;
@@ -55,7 +56,7 @@ public sealed class Product : BaseEntity
         Price = price;
     }
 
-    public void AddMedia(string name,string url)
+    public void AddMedia(string name, string url)
     {
         Medias.Add(new Media(name, url));
     }

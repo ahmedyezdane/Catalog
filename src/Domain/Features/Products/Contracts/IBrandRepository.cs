@@ -1,6 +1,6 @@
-﻿using Domain.Products.Entities;
+﻿using Domain.Features.Products.Entities;
 
-namespace Domain.Products.Contracts;
+namespace Domain.Features.Products.Contracts;
 
 public interface IBrandRepository
 {

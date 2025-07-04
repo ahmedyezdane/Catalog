@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 string connectionString = "Foo";
 
 builder.Services.RegisterDbContext(connectionString);
+builder.Services.RegisterRepositories();
 
 var app = builder.Build();
 

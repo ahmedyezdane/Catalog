@@ -12,6 +12,9 @@ public sealed class Category : BaseEntity
     public Category Parent { get; private set; } = null!;
 
     public ICollection<Category> Children { get; private set; } = null!;
+
+    public ICollection<Product>? Products { get; set; }
+
     #endregion
 
     #region Behaviors

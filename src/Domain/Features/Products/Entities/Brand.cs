@@ -9,6 +9,7 @@ public sealed class Brand : BaseEntity
 
     public string LogoUrl { get; private set; } = null!;
 
+    public ICollection<Product>? Products { get; set; }
 
     public void Update(string name) => Name = name;
 

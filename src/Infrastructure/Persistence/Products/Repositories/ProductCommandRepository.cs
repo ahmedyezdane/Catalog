@@ -1,17 +1,25 @@
 ﻿using Domain.Features.Products.Contracts;
 using Domain.Features.Products.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Products.Repositories;
 
 internal class ProductCommandRepository : IProductCommandRepository
 {
-    public Task AddAsync(Product product, CancellationToken ct)
+    private readonly ApplicationDbContext dbContext;
+
+    public ProductCommandRepository(ApplicationDbContext dbContext)
     {
-        throw new NotImplementedException();
+        this.dbContext = dbContext;
     }
 
-    public Task<Product> LoadByIdAsync(int id, CancellationToken ct)
+    public async Task AddAsync(Product product, CancellationToken ct)
     {
-        throw new NotImplementedException();
+        await dbContext.Products.AddAsync(product, ct);
+    }
+
+    public async Task<Product> LoadByIdAsync(int id, CancellationToken ct)
+    {
+        return await dbContext.Products.SingleOrDefaultAsync(c => c.Id == id, ct);
     }
 }

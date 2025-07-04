@@ -1,17 +1,25 @@
 ﻿using Domain.Features.Products.Contracts;
 using Domain.Features.Products.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Products.Repositories;
 
 internal class CategoryCommandRepository : ICategoryCommandRepository
 {
-    public Task AddAsync(Category category, CancellationToken ct)
+    private readonly ApplicationDbContext dbContext;
+
+    public CategoryCommandRepository(ApplicationDbContext dbContext)
     {
-        throw new NotImplementedException();
+        this.dbContext = dbContext;
     }
 
-    public Task<Category> LoadByIdAsync(int id, CancellationToken ct)
+    public async Task AddAsync(Category category, CancellationToken ct)
     {
-        throw new NotImplementedException();
+        await dbContext.Categories.AddAsync(category, ct);
+    }
+
+    public async Task<Category> LoadByIdAsync(int id, CancellationToken ct)
+    {
+        return await dbContext.Categories.SingleOrDefaultAsync(c => c.Id == id, ct);
     }
 }

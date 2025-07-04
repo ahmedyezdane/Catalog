@@ -1,17 +1,25 @@
 ﻿using Domain.Features.Products.Contracts;
 using Domain.Features.Products.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Products.Repositories;
 
 internal class BrandCommandRepository : IBrandCommandRepository
 {
-    public Task AddAsync(Brand brand, CancellationToken ct)
+    private readonly ApplicationDbContext dbContext;
+
+    public BrandCommandRepository(ApplicationDbContext dbContext)
     {
-        throw new NotImplementedException();
+        this.dbContext = dbContext;
+    }
+
+    public async Task AddAsync(Brand brand, CancellationToken ct)
+    {
+        await dbContext.Brands.AddAsync(brand, ct);
     }
 
     public Task<Brand> LoadByIdAsync(int id, CancellationToken ct)
     {
-        throw new NotImplementedException();
+        return dbContext.Brands.SingleOrDefaultAsync(b => b.Id == id, ct);
     }
 }

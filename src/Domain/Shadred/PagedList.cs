@@ -1,6 +1,6 @@
 ﻿namespace Domain.Shadred;
 
-public class Pagination<TData>
+public class PagedList<TData>
 {
     public int TotalItems { get; set; }
     public int PageSize { get; set; }
@@ -10,7 +10,7 @@ public class Pagination<TData>
     public int EndPage { get; set; }
     public List<TData> Data { get; set; } = new();
 
-    public Pagination(List<TData> data, int totalItems, int pageNo, int pageSize)
+    public PagedList(List<TData> data, int totalItems, int pageNo, int pageSize)
     {
         Data = data;
 

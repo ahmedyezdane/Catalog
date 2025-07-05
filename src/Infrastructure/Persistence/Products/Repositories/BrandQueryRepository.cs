@@ -1,11 +1,12 @@
 ﻿using Domain.Features.Products.Contracts;
 using Domain.Features.Products.DTOs;
+using Domain.Shadred;
 
 namespace Infrastructure.Persistence.Products.Repositories;
 
 internal class BrandQueryRepository : IBrandQueryRepository
 {
-    public Task<List<BrandDto>> GetAllAsync(CancellationToken ct)
+    public Task<PagedList<BrandDto>> GetAllAsync(BaseSearchDto inputDto, CancellationToken ct)
     {
         throw new NotImplementedException();
     }

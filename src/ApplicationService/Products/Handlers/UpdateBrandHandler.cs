@@ -9,10 +9,10 @@ namespace ApplicationService.Products.Handlers;
 
 internal class UpdateBrandHandler : ICommandHandler<UpdateBrandCommand>
 {
-    private readonly IBrandCommandRepository _brandRepository;
+    private readonly IBrandRepository _brandRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public UpdateBrandHandler(IBrandCommandRepository brandRepository, IUnitOfWork unitOfWork)
+    public UpdateBrandHandler(IBrandRepository brandRepository, IUnitOfWork unitOfWork)
     {
         _brandRepository = brandRepository;
         _unitOfWork = unitOfWork;

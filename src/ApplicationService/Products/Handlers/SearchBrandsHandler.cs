@@ -8,16 +8,16 @@ namespace ApplicationService.Products.Handlers;
 
 public class SearchBrandsHandler : IQueryHandler<BaseSearchDto, PagedList<BrandDto>>
 {
-    private readonly IBrandQueryRepository _brandQueryRepository;
+    private readonly IBrandRepository _brandRepository;
 
-    public SearchBrandsHandler(IBrandQueryRepository brandQueryRepository)
+    public SearchBrandsHandler(IBrandRepository brandRepository)
     {
-        _brandQueryRepository = brandQueryRepository;
+        _brandRepository = brandRepository;
     }
 
     public Task<PagedList<BrandDto>> Fetch(BaseSearchDto inputDto, CancellationToken cancellationToken)
     {
-        var result = _brandQueryRepository.GetAllAsync(inputDto,cancellationToken);
+        var result = _brandRepository.GetAllAsync(inputDto,cancellationToken);
 
         return result;
     }

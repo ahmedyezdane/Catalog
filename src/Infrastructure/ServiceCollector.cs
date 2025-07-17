@@ -19,12 +19,9 @@ public static class ServiceCollector
 
     public static IServiceCollection RegisterRepositories(this IServiceCollection services)
     {
-        services.AddScoped<IBrandCommandRepository, BrandCommandRepository>();
-        services.AddScoped<IBrandQueryRepository, BrandQueryRepository>();
-        services.AddScoped<ICategoryCommandRepository, CategoryCommandRepository>();
-        services.AddScoped<ICategoryQueryRepository, CategoryQueryRepository>();
-        services.AddScoped<IProductCommandRepository, ProductCommandRepository>();
-        services.AddScoped<IProductQueryRepository, ProductQueryRepository>();
+        services.AddScoped<IBrandRepository, BrandRepository>();
+        services.AddScoped<ICategoryRepository, CategoryCommandRepository>();
+        services.AddScoped<IProductRepository, ProductCommandRepository>();
 
         return services;
     }

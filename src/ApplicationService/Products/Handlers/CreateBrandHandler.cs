@@ -8,10 +8,10 @@ namespace ApplicationService.Products.Handlers;
 
 internal class CreateBrandHandler : ICommandHandler<CreateBrandCommand>
 {
-    private readonly IBrandCommandRepository _brandRepository;
+    private readonly IBrandRepository _brandRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public CreateBrandHandler(IBrandCommandRepository brandRepository, IUnitOfWork unitOfWork)
+    public CreateBrandHandler(IBrandRepository brandRepository, IUnitOfWork unitOfWork)
     {
         _brandRepository = brandRepository;
         _unitOfWork = unitOfWork;

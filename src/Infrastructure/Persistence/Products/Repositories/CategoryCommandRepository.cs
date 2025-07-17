@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Products.Repositories;
 
-internal class CategoryCommandRepository : ICategoryCommandRepository
+internal class CategoryCommandRepository : ICategoryRepository
 {
     private readonly ApplicationDbContext dbContext;
 
@@ -21,5 +21,15 @@ internal class CategoryCommandRepository : ICategoryCommandRepository
     public async Task<Category> LoadByIdAsync(int id, CancellationToken ct)
     {
         return await dbContext.Categories.SingleOrDefaultAsync(c => c.Id == id, ct);
+    }
+
+    public Task<List<Category>> GetAllAsync(CancellationToken ct)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<Category> GetByIdAsync(int id, CancellationToken ct)
+    {
+        throw new NotImplementedException();
     }
 }

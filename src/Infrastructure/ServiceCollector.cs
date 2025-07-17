@@ -1,4 +1,5 @@
 ﻿using Domain.Features.Products.Contracts;
+using Domain.Shadred;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Products.Repositories;
 using Microsoft.Data.SqlClient;
@@ -13,7 +14,7 @@ public static class ServiceCollector
     public static IServiceCollection RegisterDbContext(this IServiceCollection services, string connectionString)
     {
         services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
-        services.AddScoped<IDbConnection>(_ => new SqlConnection(connectionString));
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
         return services;
     }
 

@@ -2,7 +2,7 @@
 
 public interface IUnitOfWork
 {
-    Result<int> CommitChanges();
+    int CommitChanges();
 
-    Task<Result<int>> CommitChangesAsync(CancellationToken ct);
+    Task<int> CommitChangesAsync(CancellationToken ct);
 }

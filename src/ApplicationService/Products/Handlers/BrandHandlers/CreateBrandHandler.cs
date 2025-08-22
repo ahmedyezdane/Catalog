@@ -4,7 +4,7 @@ using Domain.Features.Products.Entities;
 using Domain.Shadred;
 using Domain.Shadred.CQRS;
 
-namespace ApplicationService.Products.Handlers;
+namespace ApplicationService.Products.Handlers.BrandHandlers;
 
 public class CreateBrandHandler : ICommandHandler<CreateBrandCommand>
 {

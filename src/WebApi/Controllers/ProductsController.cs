@@ -1,4 +1,5 @@
-﻿using ApplicationService.Products.Handlers;
+﻿using ApplicationService.Products.Handlers.BrandHandlers;
+using ApplicationService.Products.Handlers.CategoryHandlers;
 using Domain.Features.Products.Commands;
 using Domain.Features.Products.DTOs;
 using Domain.Shadred;
@@ -72,7 +73,61 @@ public class ProductsController : ControllerBase
 
     #region Category
 
+    [HttpPost("create-category")]
+    public async Task<IActionResult> CreateCategory(
+        [FromServices] CreateCategoryHandler handler,
+        [FromBody] CreateCategoryCommand command,
+        CancellationToken cancellationToken)
+    {
+        try
+        {
+            await handler.Execute(command, cancellationToken);
+            return Ok();
+        }
+        catch (Exception)
+        {
+            // TODO: Log
+            throw;
+        }
+    }
+
+    [HttpPut("update-category")]
+    public async Task<IActionResult> UpdateCategory(
+        [FromServices] UpdateCategoryHandler handler,
+        [FromBody] UpdateCategoryCommand command,
+        CancellationToken cancellationToken)
+    {
+        try
+        {
+            await handler.Execute(command, cancellationToken);
+            return Ok();
+        }
+        catch (Exception)
+        {
+            // TODO: Log
+            throw;
+        }
+    }
+
+    [HttpGet("search-category")]
+    [ProducesResponseType(typeof(List<CategoryDto>), 200)]
+    public async Task<IActionResult> SearchCategory(
+        [FromServices] SearchCategoriesHandler handler,
+        CancellationToken cancellationToken)
+    {
+        try
+        {
+            return Ok(await handler.Fetch(cancellationToken));
+        }
+        catch (Exception)
+        {
+            // TODO: Log
+            throw;
+        }
+    }
+
     #endregion Category
+
 
     #region Brand
 

@@ -1,5 +1,7 @@
 ﻿using Domain.Features.Products.Contracts;
+using Domain.Features.Products.DTOs;
 using Domain.Features.Products.Entities;
+using Domain.Shadred;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Products.Repositories;
@@ -23,13 +25,11 @@ internal class CategoryCommandRepository : ICategoryRepository
         return await dbContext.Categories.SingleOrDefaultAsync(c => c.Id == id, ct);
     }
 
-    public Task<List<Category>> GetAllAsync(CancellationToken ct)
+    public async Task<List<CategoryDto>> GetAllAsync(CancellationToken ct)
     {
-        throw new NotImplementedException();
-    }
+        var query = dbContext.Categories.AsQueryable();
 
-    public Task<Category> GetByIdAsync(int id, CancellationToken ct)
-    {
-        throw new NotImplementedException();
+        return await query.Select(a => new CategoryDto(a.Id,a.Name, a.ParentId))
+                          .ToListAsync();
     }
 }

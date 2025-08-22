@@ -1,4 +1,6 @@
-﻿using Domain.Features.Products.Entities;
+﻿using Domain.Features.Products.DTOs;
+using Domain.Features.Products.Entities;
+using Domain.Shadred;
 
 namespace Domain.Features.Products.Contracts;
 
@@ -8,7 +10,5 @@ public interface ICategoryRepository
 
     Task<Category> LoadByIdAsync(int id, CancellationToken ct);
 
-    Task<List<Category>> GetAllAsync(CancellationToken ct);
-
-    Task<Category> GetByIdAsync(int id, CancellationToken ct);
+    Task<List<CategoryDto>> GetAllAsync(CancellationToken ct);
 }

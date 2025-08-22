@@ -2,7 +2,6 @@
 using Domain.Features.Products.DTOs;
 using Domain.Features.Products.Entities;
 using Domain.Shadred;
-using Infrastructure.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Products.Repositories;

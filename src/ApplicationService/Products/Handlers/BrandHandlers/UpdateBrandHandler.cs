@@ -5,7 +5,7 @@ using Domain.Shadred.CQRS;
 using Domain.Shadred;
 using Domain.Shadred.Exceptions;
 
-namespace ApplicationService.Products.Handlers;
+namespace ApplicationService.Products.Handlers.BrandHandlers;
 
 public class UpdateBrandHandler : ICommandHandler<UpdateBrandCommand>
 {

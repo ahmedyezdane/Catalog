@@ -7,7 +7,7 @@ using Domain.Shadred.Exceptions;
 
 namespace ApplicationService.Products.Handlers;
 
-internal class UpdateBrandHandler : ICommandHandler<UpdateBrandCommand>
+public class UpdateBrandHandler : ICommandHandler<UpdateBrandCommand>
 {
     private readonly IBrandRepository _brandRepository;
     private readonly IUnitOfWork _unitOfWork;

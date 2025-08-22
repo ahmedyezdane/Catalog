@@ -15,9 +15,9 @@ public class SearchBrandsHandler : IQueryHandler<BaseSearchDto, PagedList<BrandD
         _brandRepository = brandRepository;
     }
 
-    public Task<PagedList<BrandDto>> Fetch(BaseSearchDto inputDto, CancellationToken cancellationToken)
+    public async Task<PagedList<BrandDto>> Fetch(BaseSearchDto inputDto, CancellationToken cancellationToken)
     {
-        var result = _brandRepository.GetAllAsync(inputDto,cancellationToken);
+        var result = await _brandRepository.GetAllAsync(inputDto,cancellationToken);
 
         return result;
     }

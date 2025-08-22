@@ -14,12 +14,12 @@ public static class ServiceCollector
     public static IServiceCollection RegisterDbContext(this IServiceCollection services, string connectionString)
     {
         services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
         return services;
     }
 
     public static IServiceCollection RegisterRepositories(this IServiceCollection services)
     {
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IBrandRepository, BrandRepository>();
         services.AddScoped<ICategoryRepository, CategoryCommandRepository>();
         services.AddScoped<IProductRepository, ProductCommandRepository>();

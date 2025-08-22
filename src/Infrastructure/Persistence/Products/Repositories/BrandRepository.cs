@@ -2,6 +2,7 @@
 using Domain.Features.Products.DTOs;
 using Domain.Features.Products.Entities;
 using Domain.Shadred;
+using Infrastructure.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Products.Repositories;
@@ -22,16 +23,22 @@ internal class BrandRepository : IBrandRepository
 
     public Task<Brand> LoadByIdAsync(int id, CancellationToken ct)
     {
-        return dbContext.Brands.SingleOrDefaultAsync(b => b.Id == id, ct);
+        return dbContext.Brands.FirstOrDefaultAsync(b => b.Id == id, ct);
     }
 
-    public Task<PagedList<BrandDto>> GetAllAsync(BaseSearchDto inputDto, CancellationToken ct)
+    public async Task<PagedList<BrandDto>> GetAllAsync(BaseSearchDto inputDto, CancellationToken ct)
     {
-        throw new NotImplementedException();
-    }
+        var query = dbContext.Brands.AsQueryable();
 
-    public Task<BrandDto> GetByIdAsync(int id, CancellationToken ct)
-    {
-        throw new NotImplementedException();
+        if (!string.IsNullOrWhiteSpace(inputDto.Filter))
+            query = query.Where(a => a.Name.Contains(inputDto.Filter));
+
+        var total = await query.CountAsync();
+
+        var result = await query.Select(a => new BrandDto(a.Name,a.LogoUrl))
+                                .Skip(inputDto.Skip).Take(inputDto.PageSize)
+                                .ToListAsync();
+
+        return new PagedList<BrandDto>(result, total, inputDto.PageNumber, inputDto.PageSize);
     }
 }

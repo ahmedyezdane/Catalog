@@ -11,6 +11,4 @@ public interface IBrandRepository
     Task<Brand> LoadByIdAsync(int id, CancellationToken ct);
 
     Task<PagedList<BrandDto>> GetAllAsync(BaseSearchDto inputDto, CancellationToken ct);
-
-    Task<BrandDto> GetByIdAsync(int id, CancellationToken ct);
 }

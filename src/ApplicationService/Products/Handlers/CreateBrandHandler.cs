@@ -6,7 +6,7 @@ using Domain.Shadred.CQRS;
 
 namespace ApplicationService.Products.Handlers;
 
-internal class CreateBrandHandler : ICommandHandler<CreateBrandCommand>
+public class CreateBrandHandler : ICommandHandler<CreateBrandCommand>
 {
     private readonly IBrandRepository _brandRepository;
     private readonly IUnitOfWork _unitOfWork;

@@ -11,8 +11,8 @@ public class BaseSearchDto
         else
             PageNumber = pageNumber;
 
-        if(pageSize > 50)
-            PageSize = 50;
+        if(pageSize < 1 || 20 < pageSize)
+            PageSize = 20;
         else
             PageSize = pageSize;
     }
@@ -20,4 +20,5 @@ public class BaseSearchDto
     public int PageNumber { get; init; }
     public int PageSize { get; init; }
     public string Filter { get; init; }
+    public int Skip => (PageNumber - 1) * PageSize;
 }

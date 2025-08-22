@@ -1,6 +1,8 @@
 ﻿using ApplicationService.Products.Handlers.BrandHandlers;
 using ApplicationService.Products.Handlers.CategoryHandlers;
+using ApplicationService.Products.Handlers.ProductHandlers;
 using Domain.Features.Products.Commands;
+using Domain.Features.Products.Commands.ProductCommands;
 using Domain.Features.Products.DTOs;
 using Domain.Shadred;
 using Microsoft.AspNetCore.Http;
@@ -128,8 +130,98 @@ public class ProductsController : ControllerBase
 
     #endregion Category
 
+    #region Product
 
-    #region Brand
+    [HttpPost("create-product")]
+    public async Task<IActionResult> CreateProduct(
+        [FromServices] CreateProductHandler handler,
+        [FromBody] CreateProductCommand command,
+        CancellationToken cancellationToken)
+    {
+        try
+        {
+            await handler.Execute(command, cancellationToken);
+            return Ok();
+        }
+        catch (Exception)
+        {
+            // TODO: Log
+            throw;
+        }
+    }
 
-    #endregion Brand
+    [HttpPut("update-product-price")]
+    public async Task<IActionResult> UpdateProductPrice(
+        [FromServices] UpdateProductPriceHandler handler,
+        [FromBody] UpdateProductPriceCommand command,
+        CancellationToken cancellationToken)
+    {
+        try
+        {
+            await handler.Execute(command, cancellationToken);
+            return Ok();
+        }
+        catch (Exception)
+        {
+            // TODO: Log
+            throw;
+        }
+    }
+
+    [HttpPut("update-product-stock")]
+    public async Task<IActionResult> UpdateProductStock(
+        [FromServices] UpdateProductStockHandler handler,
+        [FromBody] UpdateProductStockCommand command,
+        CancellationToken cancellationToken)
+    {
+        try
+        {
+            await handler.Execute(command, cancellationToken);
+            return Ok();
+        }
+        catch (Exception)
+        {
+            // TODO: Log
+            throw;
+        }
+    }
+
+    [HttpPost("add-product-media")]
+    public async Task<IActionResult> AddProductMedia(
+        [FromServices] AddProductMediaHandler handler,
+        [FromBody] AddProductMediaCommand command,
+        CancellationToken cancellationToken)
+    {
+        try
+        {
+            await handler.Execute(command, cancellationToken);
+            return Ok();
+        }
+        catch (Exception)
+        {
+            // TODO: Log
+            throw;
+        }
+    }
+
+    [HttpGet("search-product")]
+    [ProducesResponseType(typeof(PagedList<ProductDto>), 200)]
+    public async Task<IActionResult> SearchProduct(
+        [FromServices] SearchProductsHandler handler,
+        int pageNumber, int pageSize, string? filter,
+        CancellationToken cancellationToken)
+    {
+        try
+        {
+            var dto = new BaseSearchDto(pageNumber, pageSize, filter);
+            return Ok(await handler.Fetch(dto, cancellationToken));
+        }
+        catch (Exception)
+        {
+            // TODO: Log
+            throw;
+        }
+    }
+
+    #endregion Product
 }

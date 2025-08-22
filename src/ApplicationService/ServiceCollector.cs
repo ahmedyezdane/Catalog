@@ -1,6 +1,8 @@
 ﻿using System.Data;
 using ApplicationService.Products.Handlers.BrandHandlers;
 using ApplicationService.Products.Handlers.CategoryHandlers;
+using ApplicationService.Products.Handlers.ProductHandlers;
+using Domain.Features.Products.Commands.ProductCommands;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ApplicationService;
@@ -22,6 +24,16 @@ public static class ServiceCollector
         services.AddScoped<CreateCategoryHandler>();
         services.AddScoped<SearchCategoriesHandler>();
         services.AddScoped<UpdateCategoryHandler>();
+
+        #endregion
+
+        #region Product
+
+        services.AddScoped<AddProductMediaHandler>();
+        services.AddScoped<CreateProductHandler>();
+        services.AddScoped<SearchProductsHandler>();
+        services.AddScoped<UpdateProductPriceHandler>();
+        services.AddScoped<UpdateProductStockHandler>();
 
         #endregion
 

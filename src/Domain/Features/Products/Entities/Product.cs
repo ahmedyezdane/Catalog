@@ -32,23 +32,15 @@ public sealed class Product : BaseEntity
 
     #region Behaviors
 
-    public void AddStock(int quantity)
+    public void UpdateStock(int newQuantity)
     {
-        if (quantity <= 0)
+        if (newQuantity < 0)
             throw new NegativeQuantityException();
 
-        AvailableStock += quantity;
+        AvailableStock = newQuantity;
     }
 
-    public void RemoveStock(int quantity)
-    {
-        if (AvailableStock - quantity < 0)
-            throw new NegativeQuantityException();
-
-        AvailableStock -= quantity;
-    }
-
-    public void UpdatePrice(int price)
+    public void UpdatePrice(decimal price)
     {
         if (price <= 0)
             throw new PriceGreaterThanZeroException();
@@ -77,7 +69,7 @@ public sealed class Product : BaseEntity
             Slug = name.ToString() //TODO: replace with .ToSlug() 
         };
 
-        newProduct.AddStock(availableStock);
+        newProduct.UpdateStock(availableStock);
 
         return newProduct;
     }

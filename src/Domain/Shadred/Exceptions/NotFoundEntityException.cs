@@ -1,8 +1,11 @@
-﻿namespace Domain.Shadred.Exceptions;
+﻿using Domain.Shadred.Helpers;
 
-public class NotFoundEntityException : Exception
+namespace Domain.Shadred.Exceptions;
+
+public class NotFoundEntityException : DomainException
 {
-    public NotFoundEntityException(string entityName) : base(entityName)
+    public NotFoundEntityException(string entityName) 
+        : base(string.Format(DomainErrors.NotFoundEntity,entityName))
     {
     }
 }

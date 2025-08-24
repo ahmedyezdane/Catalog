@@ -34,7 +34,7 @@ internal class BrandRepository : IBrandRepository
 
         var total = await query.CountAsync();
 
-        var result = await query.Select(a => new BrandDto(a.Name,a.LogoUrl))
+        var result = await query.Select(a => new BrandDto(a.Name,a.WebsiteUrl))
                                 .Skip(inputDto.Skip).Take(inputDto.PageSize)
                                 .ToListAsync();
 

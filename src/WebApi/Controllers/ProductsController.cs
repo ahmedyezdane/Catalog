@@ -62,7 +62,8 @@ public class ProductsController : ControllerBase
         try
         {
             var dto = new BaseSearchDto(pageNumber, pageSize,filter);
-            return Ok(await handler.Fetch(dto, cancellationToken));
+            var result = await handler.Fetch(dto, cancellationToken);
+            return Ok(result);
         }
         catch (Exception)
         {

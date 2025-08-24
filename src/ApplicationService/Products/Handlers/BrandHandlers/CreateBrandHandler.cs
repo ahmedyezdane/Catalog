@@ -19,7 +19,7 @@ public class CreateBrandHandler : ICommandHandler<CreateBrandCommand>
 
     public async Task Execute(CreateBrandCommand command, CancellationToken cancellationToken)
     {
-        var brand = Brand.Create(command.Name, command.LogoUrl);
+        var brand = Brand.Create(command.Name, command.WebsiteUrl);
 
         await _brandRepository.AddAsync(brand,cancellationToken);
         await _unitOfWork.CommitChangesAsync(cancellationToken);

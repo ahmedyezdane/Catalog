@@ -2,5 +2,5 @@
 
 public record CreateBrandCommand(
     string Name,
-    string LogoUrl
+    string WebsiteUrl
 );

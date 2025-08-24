@@ -1,6 +1,7 @@
 ﻿using Domain.Features.Products.Exceptions;
 using Domain.Features.Products.ValueObjects;
 using Domain.Shadred;
+using Domain.Shadred.Helpers;
 
 namespace Domain.Features.Products.Entities;
 
@@ -35,7 +36,7 @@ public sealed class Product : BaseEntity
     public void UpdateStock(int newQuantity)
     {
         if (newQuantity < 0)
-            throw new NegativeQuantityException();
+            throw new ProductStockNegativeQuantityException(DomainErrors.ProductPriceLessThanOrEqualToZero);
 
         AvailableStock = newQuantity;
     }
@@ -43,7 +44,7 @@ public sealed class Product : BaseEntity
     public void UpdatePrice(decimal price)
     {
         if (price <= 0)
-            throw new PriceGreaterThanZeroException();
+            throw new ProductPriceLessThanOrEqualToZeroException(DomainErrors.ProductPriceLessThanOrEqualToZero);
 
         Price = price;
     }
@@ -57,7 +58,7 @@ public sealed class Product : BaseEntity
 
     #region Factory
 
-    public static Product Create(string name, string description, int brandId, int categoryId, decimal price = default, int availableStock = default)
+    public static Product Create(string name, string description, int brandId, int categoryId, decimal price, int availableStock = default)
     {
         var newProduct = new Product()
         {
@@ -65,11 +66,11 @@ public sealed class Product : BaseEntity
             Description = description,
             BrandId = brandId,
             CategoryId = categoryId,
-            Price = price,
-            Slug = name.ToString() //TODO: replace with .ToSlug() 
+            Slug = name.ToSlug()
         };
 
         newProduct.UpdateStock(availableStock);
+        newProduct.UpdatePrice(price);
 
         return newProduct;
     }

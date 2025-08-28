@@ -1,6 +1,7 @@
 using ApplicationService;
 using Infrastructure;
 using WebApi.Extensions;
+using WebApi.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,8 @@ builder.Services.RegisterRepositories();
 builder.Services.RegisterHandlers();
 
 var app = builder.Build();
+
+app.UseCustomExceptionHandler();
 
 app.UseSwaggerInDevelopment();
 

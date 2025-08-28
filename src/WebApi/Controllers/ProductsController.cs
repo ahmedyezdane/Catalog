@@ -4,14 +4,14 @@ using ApplicationService.Products.Handlers.ProductHandlers;
 using Domain.Features.Products.Commands;
 using Domain.Features.Products.Commands.ProductCommands;
 using Domain.Features.Products.DTOs;
-using Domain.Shadred;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+using Domain.Shadred;using Microsoft.AspNetCore.Mvc;
+using WebApi.Filters;
 
 namespace WebApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[ApiResultFilter]
 public class ProductsController : ControllerBase
 {
     #region Brand
@@ -22,16 +22,8 @@ public class ProductsController : ControllerBase
         [FromBody] CreateBrandCommand command,
         CancellationToken cancellationToken)
     {
-        try
-        {
-            await handler.Execute(command, cancellationToken);
-            return Ok();
-        }
-        catch (Exception)
-        {
-            // TODO: Log
-            throw;
-        }
+        await handler.Execute(command, cancellationToken);
+        return Created();
     }
 
     [HttpPut("update-brand")]
@@ -40,16 +32,8 @@ public class ProductsController : ControllerBase
     [FromBody] UpdateBrandCommand command,
     CancellationToken cancellationToken)
     {
-        try
-        {
-            await handler.Execute(command, cancellationToken);
-            return Ok();
-        }
-        catch (Exception)
-        {
-            // TODO: Log
-            throw;
-        }
+        await handler.Execute(command, cancellationToken);
+        return Created();
     }
 
     [HttpGet("search-brand")]
@@ -59,17 +43,9 @@ public class ProductsController : ControllerBase
         int pageNumber, int pageSize, string? filter,
         CancellationToken cancellationToken)
     {
-        try
-        {
-            var dto = new BaseSearchDto(pageNumber, pageSize,filter);
-            var result = await handler.Fetch(dto, cancellationToken);
-            return Ok(result);
-        }
-        catch (Exception)
-        {
-            // TODO: Log
-            throw;
-        }
+        var dto = new BaseSearchDto(pageNumber, pageSize, filter);
+        var result = await handler.Fetch(dto, cancellationToken);
+        return Ok(result);
     }
 
     #endregion Brand
@@ -82,16 +58,8 @@ public class ProductsController : ControllerBase
         [FromBody] CreateCategoryCommand command,
         CancellationToken cancellationToken)
     {
-        try
-        {
-            await handler.Execute(command, cancellationToken);
-            return Ok();
-        }
-        catch (Exception)
-        {
-            // TODO: Log
-            throw;
-        }
+        await handler.Execute(command, cancellationToken);
+        return Created();
     }
 
     [HttpPut("update-category")]
@@ -100,16 +68,8 @@ public class ProductsController : ControllerBase
         [FromBody] UpdateCategoryCommand command,
         CancellationToken cancellationToken)
     {
-        try
-        {
-            await handler.Execute(command, cancellationToken);
-            return Ok();
-        }
-        catch (Exception)
-        {
-            // TODO: Log
-            throw;
-        }
+        await handler.Execute(command, cancellationToken);
+        return Created();
     }
 
     [HttpGet("search-category")]
@@ -118,15 +78,7 @@ public class ProductsController : ControllerBase
         [FromServices] SearchCategoriesHandler handler,
         CancellationToken cancellationToken)
     {
-        try
-        {
-            return Ok(await handler.Fetch(cancellationToken));
-        }
-        catch (Exception)
-        {
-            // TODO: Log
-            throw;
-        }
+        return Ok(await handler.Fetch(cancellationToken));
     }
 
     #endregion Category
@@ -139,16 +91,8 @@ public class ProductsController : ControllerBase
         [FromBody] CreateProductCommand command,
         CancellationToken cancellationToken)
     {
-        try
-        {
-            await handler.Execute(command, cancellationToken);
-            return Ok();
-        }
-        catch (Exception)
-        {
-            // TODO: Log
-            throw;
-        }
+        await handler.Execute(command, cancellationToken);
+        return Created();
     }
 
     [HttpPut("update-product-price")]
@@ -157,16 +101,8 @@ public class ProductsController : ControllerBase
         [FromBody] UpdateProductPriceCommand command,
         CancellationToken cancellationToken)
     {
-        try
-        {
-            await handler.Execute(command, cancellationToken);
-            return Ok();
-        }
-        catch (Exception)
-        {
-            // TODO: Log
-            throw;
-        }
+        await handler.Execute(command, cancellationToken);
+        return Created();
     }
 
     [HttpPut("update-product-stock")]
@@ -175,16 +111,8 @@ public class ProductsController : ControllerBase
         [FromBody] UpdateProductStockCommand command,
         CancellationToken cancellationToken)
     {
-        try
-        {
-            await handler.Execute(command, cancellationToken);
-            return Ok();
-        }
-        catch (Exception)
-        {
-            // TODO: Log
-            throw;
-        }
+        await handler.Execute(command, cancellationToken);
+        return Created();
     }
 
     [HttpPost("add-product-media")]
@@ -193,16 +121,8 @@ public class ProductsController : ControllerBase
         [FromBody] AddProductMediaCommand command,
         CancellationToken cancellationToken)
     {
-        try
-        {
-            await handler.Execute(command, cancellationToken);
-            return Ok();
-        }
-        catch (Exception)
-        {
-            // TODO: Log
-            throw;
-        }
+        await handler.Execute(command, cancellationToken);
+        return Created();
     }
 
     [HttpGet("search-product")]
@@ -212,16 +132,8 @@ public class ProductsController : ControllerBase
         int pageNumber, int pageSize, string? filter,
         CancellationToken cancellationToken)
     {
-        try
-        {
-            var dto = new BaseSearchDto(pageNumber, pageSize, filter);
-            return Ok(await handler.Fetch(dto, cancellationToken));
-        }
-        catch (Exception)
-        {
-            // TODO: Log
-            throw;
-        }
+        var dto = new BaseSearchDto(pageNumber, pageSize, filter);
+        return Ok(await handler.Fetch(dto, cancellationToken));
     }
 
     #endregion Product

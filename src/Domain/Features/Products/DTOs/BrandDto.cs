@@ -2,5 +2,5 @@
 
 public record BrandDto(
     string Name,
-    string LogoUrl
+    string WebsiteUrl
 );

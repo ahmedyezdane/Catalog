@@ -2,7 +2,7 @@
 
 namespace Infrastructure.Persistence;
 
-internal class UnitOfWork : IUnitOfWork
+public class UnitOfWork : IUnitOfWork
 {
     private readonly ApplicationDbContext _context;
 

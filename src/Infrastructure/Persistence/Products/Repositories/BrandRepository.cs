@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Products.Repositories;
 
-internal class BrandRepository : IBrandRepository
+public class BrandRepository : IBrandRepository
 {
     private readonly ApplicationDbContext dbContext;
 

@@ -39,6 +39,7 @@ public class SearchCategoriesHandlerTests
             var category = Category.Create(_fixture.Create<string>(), null);
             categories.Add(category);
 
+            // sounds lame but i dont have any AddRange method in CategoryRepository
             await _categoryRepository.AddAsync(category, default);
         }
 

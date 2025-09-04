@@ -46,8 +46,8 @@ public class DatabaseFixture : IAsyncLifetime
     }
 }
 
-[CollectionDefinition("QueryHandlerCollection")]
-public class QueryHandlerCollection: ICollectionFixture<DatabaseFixture>
+[CollectionDefinition("QueryHandlerCollection", DisableParallelization = true)]
+public class QueryHandlerCollection : ICollectionFixture<DatabaseFixture>
 {
     // Class used only for Collection Definition
 }

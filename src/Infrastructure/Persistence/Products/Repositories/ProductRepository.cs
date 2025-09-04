@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Products.Repositories;
 
-internal class ProductCommandRepository : IProductRepository
+public class ProductRepository : IProductRepository
 {
     private readonly ApplicationDbContext dbContext;
 
-    public ProductCommandRepository(ApplicationDbContext dbContext)
+    public ProductRepository(ApplicationDbContext dbContext)
     {
         this.dbContext = dbContext;
     }

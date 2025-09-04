@@ -21,7 +21,7 @@ public static class ServiceCollector
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IBrandRepository, BrandRepository>();
-        services.AddScoped<ICategoryRepository, CategoryCommandRepository>();
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<IProductRepository, ProductCommandRepository>();
 
         return services;
